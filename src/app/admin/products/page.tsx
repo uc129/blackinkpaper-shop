@@ -1,8 +1,6 @@
 'use client'
 
-import { IProduct } from "@/app/api/products/products.model"
 import { useAuthContext } from "@/app/auth/auth-context"
-import { getAllProducts } from "@/app/lib/data-access/products"
 import { useStoreContext } from "@/app/lib/data-store/store"
 import { useEffect, useState } from "react"
 

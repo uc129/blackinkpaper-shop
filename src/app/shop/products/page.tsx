@@ -1,6 +1,8 @@
 'use client'
 
 import { useStoreContext } from "@/app/lib/data-store/store"
+import { ProductCard } from "@/app/components/ui/productCard"
+import { useState } from "react"
 
 
 
@@ -10,6 +12,8 @@ export default function ShopProductsPage() {
     const { products } = useStoreContext()
 
 
+    const [showModal, setShowModal] = useState(false)
+
 
     return (
         <div>
@@ -17,9 +21,10 @@ export default function ShopProductsPage() {
             <ul>
                 {products.map((product) => (
                     <li key={product._id as unknown as string}>
-                        <h2>{product.title}</h2>
-                        <p>{product.description}</p>
-                        <p>{product.price}</p>
+                        <ProductCard product={product} />
+                        <div id={`product-modal-${product._id}`}>
+
+                        </div>
                     </li>
                 ))}
             </ul>

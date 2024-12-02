@@ -49,6 +49,10 @@ const Dropdowns = [
                 link: '/shop'
             },
             {
+                name: "Products Page",
+                link: "/shop/products"
+            },
+            {
                 name: 'All Products',
                 link: '/shop/products/all'
             },
@@ -175,6 +179,7 @@ export const Navbar = () => {
 
     return (
         <nav className="flex *:flex min-h-24 *:gap-4 justify-between items-start bg-transparent py-5">
+
             <ul>
                 {linksLeft.map(link => {
                     if (!isAuthenticated && isProtectedLink({ path: link.path, name: link.name })) {
@@ -188,6 +193,8 @@ export const Navbar = () => {
                         )
                 })}
             </ul>
+
+
             <ul className="flex  justify-around ">
                 {Dropdowns.map((dropdown) => {
 
@@ -213,6 +220,8 @@ export const Navbar = () => {
                     )
                 })}
             </ul>
+
+
             <ul>
                 {linksRight.map(link => {
                     if (!isAuthenticated && isProtectedLink({ path: link.path, name: link.name })) {
@@ -228,7 +237,6 @@ export const Navbar = () => {
                 <li className="links">
                     <ShowCartButton />
                 </li>
-
             </ul>
 
         </nav>

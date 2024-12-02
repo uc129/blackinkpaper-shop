@@ -28,5 +28,5 @@ button:disabled {
 }
 
 nav .links {
-  @apply min-w-28;
+  @apply min-w-28 text-sm
 }

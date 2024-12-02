@@ -2,16 +2,11 @@
 
 import { useStoreContext } from "@/app/lib/data-store/store";
 import { useParams } from "next/navigation"
-import { ProductCard } from "../../productCard";
+import { ProductCard } from "../../../components/ui/productCard";
 
 export default function ShopProductPage() {
-
     const { id } = useParams()
-
-    console.log('id', id);
-
     const { products } = useStoreContext()
-
     const product = products.find((product) => product._id === id)
 
     if (!product) {
@@ -26,7 +21,17 @@ export default function ShopProductPage() {
     return (
         <div>
             <h1>Product</h1>
-            <ProductCard product={product} />
+            {
+                <div>
+                    <p>
+                        product title: {product.title}
+                    </p>
+                    <p>
+                        product id: {product._id as unknown as string}
+                    </p>
+
+                </div>
+            }
         </div>
     )
 }

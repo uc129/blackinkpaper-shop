@@ -1,4 +1,5 @@
 import React from "react";
+import { BackButton } from "../components/buttons/backButton";
 
 
 
@@ -7,6 +8,7 @@ import React from "react";
 export default function ShopLayout(props: { children: React.ReactNode, modal?: React.ReactNode }) {
     return (
         <section>
+            <BackButton />
             {props.children}
             {props.modal}
         </section>

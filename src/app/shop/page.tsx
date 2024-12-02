@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { IProduct } from "../api/products/products.model"
 import { useStoreContext } from "../lib/data-store/store"
-import { ProductDisplayCard } from "./product-display-card"
+import { ProductDisplayCard } from "../components/ui/product-display-card"
 import Link from "next/link"
 
 

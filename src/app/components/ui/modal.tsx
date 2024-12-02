@@ -1,18 +1,12 @@
 'use client';
-import React from 'react';
 
 import { type ElementRef, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { createPortal } from 'react-dom';
 
-export function Modal({ children }: { children: React.ReactNode }) {
+export function Modal({ children, rootId }: { children: React.ReactNode, rootId: string }) {
     const router = useRouter();
     const dialogRef = useRef<ElementRef<'dialog'>>(null);
-
-    useEffect(() => {
-        if (!document) return;
-        document.createElement('modal-root');
-    })
 
     useEffect(() => {
         if (!dialogRef.current?.open) {
@@ -24,8 +18,6 @@ export function Modal({ children }: { children: React.ReactNode }) {
         router.back();
     }
 
-    if (!document) return null;
-
     return createPortal(
         <div className="modal-backdrop">
             <dialog ref={dialogRef} className="modal" onClose={onDismiss}>
@@ -33,6 +25,6 @@ export function Modal({ children }: { children: React.ReactNode }) {
                 <button onClick={onDismiss} className="close-button" />
             </dialog>
         </div>,
-        document.getElementById('modal-root')!
+        document.getElementById(rootId)!
     );
 }
