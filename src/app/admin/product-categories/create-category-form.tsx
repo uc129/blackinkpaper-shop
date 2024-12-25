@@ -4,6 +4,7 @@ import { createProductCategory } from "@/app/lib/data-access/product-categories"
 import { useState } from "react"
 
 import { useRouter } from "next/navigation"
+import FormContainer from "@/app/components/form-components/form-container"
 
 
 
@@ -50,14 +51,14 @@ const CreateCategoryForm = () => {
 
 
     return (
-        <>
+        <FormContainer title="Create a new Category" description="" >
             <form>
                 <CustomInput type="text" name="title" label="Title" placeholder="Title" value={formData.title} onChange={handleChange} />
                 <CustomInput type="text" name="description" label="Description" placeholder="Description" value={formData.description} onChange={handleChange} />
                 <CustomInput type="text" name="tagline" label="Tagline" placeholder="Tagline" value={formData.tagline} onChange={handleChange} />
                 <button onClick={handleSubmit}>Create Category</button>
             </form>
-        </>
+        </FormContainer>
     )
 
 

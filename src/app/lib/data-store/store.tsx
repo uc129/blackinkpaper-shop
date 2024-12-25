@@ -195,9 +195,6 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
         }
     }, [user])
 
-
-
-
     return (
         <StoreContext.Provider value={{ products, categories, cart, userInfo, addToCart, removeFromCart, clearItemFromCart, clearCart }}>
             {children}

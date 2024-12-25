@@ -1,6 +1,5 @@
 'use server'
-
-
+import { revalidateTag } from "next/cache";
 
 let ApiUrl = process.env.API_URL || "http://localhost:3000/api"
 
@@ -9,7 +8,7 @@ export async function getAllProducts() {
         method: 'GET',
         cache: 'force-cache',
         next: {
-            revalidate: 60,
+            revalidate: 3600,
             tags: ['products']
         }
     });
@@ -22,7 +21,7 @@ export async function getProductById(id: string) {
         method: 'GET',
         cache: 'force-cache',
         next: {
-            revalidate: 60,
+            revalidate: 3600,
             tags: ['products']
         }
     });
@@ -35,8 +34,8 @@ export async function createProduct(productData: any) {
     const response = await fetch(`${ApiUrl}/products`, {
         method: 'POST',
         body: JSON.stringify(productData),
-
     });
+    revalidateTag('products');
     const data = await response.json();
     console.log('create product', data);
     return data;
@@ -51,6 +50,8 @@ export async function updateProduct(id: string, productData: any) {
     });
     const data = await response.json();
     console.log('update product', data);
+    revalidateTag('products');
+
     return data;
 }
 
@@ -58,9 +59,10 @@ export async function updateProduct(id: string, productData: any) {
 export async function deleteProduct(id: string) {
     const response = await fetch(`${ApiUrl}/products?id=${id}`, {
         method: 'DELETE',
-
     });
     const data = await response.json();
     console.log('delete product', data);
+    revalidateTag('products');
+
     return data;
 }

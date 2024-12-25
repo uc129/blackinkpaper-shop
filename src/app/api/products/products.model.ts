@@ -1,3 +1,4 @@
+import { ImageData } from '@/app/components/buttons/upload-image-button';
 import mongoose, { Schema, Document } from 'mongoose';
 
 
@@ -13,8 +14,11 @@ export interface IProduct {
     stock: number;
     inStock: boolean;
     active: boolean;
+    isFeatured: boolean;
+
 
     image_urls: string[];
+    images: ImageData[];
 
     categories: Schema.Types.ObjectId[];
     tags?: Schema.Types.ObjectId[];
@@ -26,6 +30,12 @@ export interface IProduct {
 
     rating?: number;
     totalPurchaseCount?: number;
+
+    colour_pallette?: string[];
+    features?: string[];
+    used_tools?: string[];
+    featuringCompanies?: string[]
+
 
 }
 
@@ -41,9 +51,23 @@ const ProductSchema: Schema = new Schema({
 
     stock: { type: Number, required: true },
     inStock: { type: Boolean, required: true, default: true },
+
     active: { type: Boolean, required: true, default: true },
+    isFeatured: { type: Boolean, required: true, default: false },
+    featuringCompanies: { type: [String], required: false },
+
+    colour_pallette: { type: [String], required: false }, //key colors of the product//hex values
+    features: { type: [String], required: false }, //key features of the product
+    used_tools: { type: [String], required: false }, //key tools used in the product
 
     image_urls: { type: [String], required: true },
+
+    images: [{
+        publicId: { type: String, required: true },
+        url: { type: String, required: true },
+        secure_url: { type: String, required: true },
+        original_filename: { type: String, required: false },
+    }],
 
     categories: { type: [Schema.Types.ObjectId], ref: 'ProductCategory', required: true },
 

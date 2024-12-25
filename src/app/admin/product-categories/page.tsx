@@ -8,9 +8,12 @@ const ManageProductCategoriesPage = () => {
 
     return (
         <div>
+            <h1 className="mb-12">Manage Product Categories</h1>
 
-            <AllCategoriesList />
-            <CreateCategoryForm />
+            <div className="grid grid-cols-1 gap-6">
+                <AllCategoriesList />
+                <CreateCategoryForm />
+            </div>
 
 
         </div>

@@ -2,7 +2,9 @@
 
 import { useAuthContext } from "@/app/auth/auth-context"
 import { useStoreContext } from "@/app/lib/data-store/store"
+import Image from "next/image"
 import { useEffect, useState } from "react"
+import { ProductCard } from "./product-card"
 
 const AllProductsPage = () => {
 
@@ -26,6 +28,14 @@ const AllProductsPage = () => {
         )
     }
 
+    if (loading) {
+        return (
+            <div>
+                <h1>Loading...</h1>
+            </div>
+        )
+    }
+
     if (!products) {
         return (
             <div>
@@ -36,36 +46,21 @@ const AllProductsPage = () => {
 
 
 
-
-
-
-
-
-
-
     return (
         <>
             {isAuthenticated ?
                 <div>
-                    <h1>All Products List</h1>
+                    <h1 className="mb-16" >All Products List</h1>
 
-                    {loading && <p>Loading...</p>}
-
-                    <ul className="grid grid-cols-1 gap-4 bg-green-300">
+                    <ul className="grid grid-cols-1 gap-4 ">
                         {products && products.map((product) => {
                             return (
-                                <li className="" key={product._id as unknown as string}>
-                                    <h2>{product.title}</h2>
-                                    <p>{product.description}</p>
-                                    <p>${product.price}</p>
-                                    <a href={`/admin/products/${product._id}`}>
-                                        View Product
-                                    </a>
+                                <li key={product._id as unknown as string}>
+                                    <ProductCard product={product} />
                                 </li>
                             )
                         })}
                     </ul>
-
 
                 </div> : <></>
             }

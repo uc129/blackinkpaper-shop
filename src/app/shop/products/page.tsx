@@ -2,7 +2,7 @@
 
 import { useStoreContext } from "@/app/lib/data-store/store"
 import { ProductCard } from "@/app/components/ui/productCard"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 
@@ -11,8 +11,20 @@ import { useState } from "react"
 export default function ShopProductsPage() {
     const { products } = useStoreContext()
 
+    const [loading, setLoading] = useState(true);
 
-    const [showModal, setShowModal] = useState(false)
+    useEffect(() => {
+        if (!loading) return
+        if (products && products.length > 0) {
+            setLoading(false);
+        }
+    }, [products, loading])
+
+    if (loading) {
+        return <div>Loading...</div>
+    }
+
+
 
 
     return (
@@ -22,9 +34,6 @@ export default function ShopProductsPage() {
                 {products.map((product) => (
                     <li key={product._id as unknown as string}>
                         <ProductCard product={product} />
-                        <div id={`product-modal-${product._id}`}>
-
-                        </div>
                     </li>
                 ))}
             </ul>

@@ -29,7 +29,9 @@ export async function POST(req: NextRequest) {
 
 
 export async function GET(req: NextRequest) {
-    let { id } = await req.json();
+    let url = new URL(req.url);
+    let id = url.searchParams.get('id');
+    console.log('id', id);
     try {
         const productCategories = await ProductCategoryModel.findById({ _id: id });
         if (!productCategories) {

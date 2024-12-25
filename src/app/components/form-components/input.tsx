@@ -2,6 +2,7 @@
 type InputTypes = 'text' | 'email' | 'password' | 'number' | 'tel' | 'date' | 'time' | 'search' | 'url' | 'file' | 'hidden' | 'color' | 'datetime-local' | 'month' | 'week';
 type widthTypes = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 interface CustomInputProps {
+    id?: string;
     label?: string;
     name: string;
     type: string;
@@ -13,13 +14,14 @@ interface CustomInputProps {
     width?: widthTypes | null;
     min?: number;
     max?: number;
+    disabled?: boolean;
 }
 
-const CustomInput = ({ label, name, type, placeholder, value, onChange, error, onBlur, min, max }: CustomInputProps) => {
+const CustomInput = ({ label, name, type, placeholder, value, onChange, error, onBlur, min, max, id, disabled }: CustomInputProps) => {
 
     return (
-        <div className={`mb-4`}>
-            {label && <label className="block text-sm font-medium text-gray-700 ">{label}</label>}
+        <div id={id} className={`mb-4`}>
+            {label && <label className="block text-sm font-medium text-label  ">{label}</label>}
             <input
                 name={name}
                 type={type}
@@ -29,10 +31,11 @@ const CustomInput = ({ label, name, type, placeholder, value, onChange, error, o
                 onBlur={onBlur}
                 min={min}
                 max={max}
+                disabled={disabled}
 
-                className={`mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+                className={`mt-1 w-full px-3 py-2 border border-gray-300 text-input rounded-md shadow-sm 
                     focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 
-                    sm:text-sm 
+                    sm:text-sm  placeholder:placeholder-black 
                     ${error ? 'border-red-500' : ''}`}
             />
             {error && <p className="mt-1 text-sm text-red-500">{error}</p>}

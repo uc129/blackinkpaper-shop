@@ -3,12 +3,13 @@ import mongoose from 'mongoose';
 // Connect to MongoDB
 
 export const connect = async () => {
+    let errors: any[] = [];
     try {
         await mongoose.connect(process.env.MONGO_URI!, {});
         console.log('MongoDB connected');
     } catch (error) {
         console.error(error);
-        process.exit(1);
+        errors.push(error);
     }
 };
 

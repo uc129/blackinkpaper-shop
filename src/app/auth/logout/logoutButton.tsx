@@ -34,8 +34,8 @@ const LogoutButton = () => {
     return (
         <button
             onClick={handleLogout}
-            className="btn btn-danger bg-red-200">
-            Log Out
+            className="btn btn-danger uppercase">
+            LogOut
         </button>
     );
 

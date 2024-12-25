@@ -5,8 +5,11 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fff;
+  --foreground: #000;
+  --input-text: #494848;
+  --placeholder-text: #6d6d6dc9;
+  --label-text: #6b6969;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -16,17 +19,167 @@
   }
 } */
 
+html {
+  --font-tofino: var(--tofino);
+  overflow: visible;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow: visible;
+  transition: all 0.25s linear;
 }
+
+.break-words {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+img {
+  z-index: 0;
+}
+
+/* buttons */
 
 button:disabled {
   pointer-events: none;
   opacity: 0.5;
 }
 
-nav .links {
-  @apply min-w-28 text-sm
+/* headings */
+
+h1.title {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h1.large {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.4rem;
+}
+
+h1.small {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2.large {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2.small {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h6 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Animations */
+
+.slideFromTop {
+  animation: slideFromTop 0.5s ease;
+}
+
+@keyframes slideFromTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.slideFromBottom {
+  animation: slideFromBottom 0.5s ease;
+}
+
+@keyframes slideFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.loading {
+  animation: loading 1s infinite;
+  background: linear-gradient(90deg, #7f7d7d, #555454, #ffffff);
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  /* margin: 0 auto; */
+  border-radius: 12px;
+  display: inline-block;
+  width: 120px;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  left: 45%;
+}
+
+@keyframes loading {
+  0% {
+    width: 0;
+    height: 12px;
+  }
+  80% {
+    width: 120px;
+    height: 12px;
+  }
+  100% {
+    width: 120px;
+    height: 12px;
+  }
 }

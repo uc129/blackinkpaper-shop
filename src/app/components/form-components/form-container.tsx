@@ -7,17 +7,20 @@ interface FormContainerProps {
     title: string;
     description: string;
     tagline?: string;
+    maxWidth?: string;
 }
 
 
-const FormContainer = ({ children, title, description, tagline }: FormContainerProps) => {
+const FormContainer = ({ children, title, description, tagline, maxWidth = '740px' }: FormContainerProps) => {
     return (
-        <form className="flex flex-col items-center justify-center w-full h-full space-y-4">
-            <h1 className="text-2xl font-semibold">{title}</h1>
-            <p className="text-sm text-center">{description}</p>
-            <p>{tagline}</p>
-            {children}
-        </form>
+        <div className="h-full py-6" style={{ maxWidth: maxWidth }}>
+            <h4 className=" font-semibold">{title}</h4>
+            <p className="text-sm">{description}</p>
+            <p className='text-sm'>{tagline}</p>
+            <div className='mt-6'>
+                {children}
+            </div>
+        </div>
     );
 }
 

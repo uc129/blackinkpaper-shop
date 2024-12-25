@@ -1,6 +1,7 @@
 'use client'
 
 import { useStoreContext } from "@/app/lib/data-store/store";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 
@@ -11,7 +12,15 @@ export const AllCategoriesList = () => {
 
     const { categories } = useStoreContext()
 
-    if (!categories) {
+    useEffect(() => {
+        console.log(categories)
+        if (categories) {
+            setLoading(false)
+        }
+        else setLoading(true)
+    }, [categories])
+
+    if (categories?.length === 0) {
         return (
             <div>
                 <h1>No Product Categories Found</h1>
@@ -19,27 +28,21 @@ export const AllCategoriesList = () => {
         )
     }
 
-    useEffect(() => {
-        if (categories) setLoading(false)
-        else setLoading(true)
-    })
-
-
     if (loading) return <h1>Loading...</h1>
 
 
 
     return (
         <section>
-            <h1>Manage Product Categories</h1>
             <div>
-                <h2>All Product Categories</h2>
+                <h3>All Product Categories</h3>
                 <ul className="grid grid-cols-4 gap-12">
                     {categories.map((category) => (
                         <li className="my-3" key={category._id as unknown as string}>
-                            <h3><span>Title:</span> {category.title}</h3>
-                            <p><span>Description:</span> {category.description}</p>
+                            <h4><span></span> {category.title}</h4>
+                            <p><span></span> {category.description}</p>
                             <p><span>Tagline:</span> {category.tagline}</p>
+                            <Link href={`/admin/product-categories/${category._id}`}>View Category</Link>
                         </li>
                     ))}
                 </ul>

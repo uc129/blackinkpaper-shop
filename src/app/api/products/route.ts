@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ProductModel } from './products.model';
+import { IProduct, ProductModel } from './products.model';
 import { connect } from '../dbconfig';
-
 
 
 export async function POST(req: NextRequest) {
@@ -9,9 +8,10 @@ export async function POST(req: NextRequest) {
 
     try {
 
-        const { title, description, tagline, price, discountPercentage, stock, inStock, active, image_urls, categories, tags } = await req.json();
+        const { title, description, tagline, price, discountPercentage, stock, inStock, active,
+            image_urls, categories, tags, isFeatured, images, colour_pallette, used_tools, features, featuringCompanies }: IProduct = await req.json();
 
-        if (!title || !description || !tagline || !price || !stock || !inStock || !active || !image_urls || !categories) {
+        if (!title || !description || !tagline || !price || !image_urls || !categories || !images) {
             return NextResponse.json({ message: 'Please provide all required fields', status: 400 });
         }
 
@@ -23,16 +23,21 @@ export async function POST(req: NextRequest) {
             discountPercentage,
             stock,
             inStock,
+            isFeatured,
             active,
             image_urls,
+            images,
             categories,
             tags,
+            colour_pallette,
+            features,
+            used_tools,
+            featuringCompanies
         });
 
         try {
             let product = await newProduct.save();
             console.log(product);
-
         }
         catch (error) {
             return NextResponse.json({ error: error, status: 500 });
@@ -65,7 +70,9 @@ export async function GET(req: NextRequest) {
 
 
 export async function PUT(req: NextRequest) {
-    let { id, title, description, tagline, price, discountPercentage, stock, inStock, active, image_urls, categories, tags } = await req.json();
+    let { id, title, description, tagline, price, discountPercentage, stock, inStock, active, image_urls, categories, tags, isFeatured,
+        images, colour_pallette, features, used_tools, featuringCompanies
+    } = await req.json();
     try {
         const product = await ProductModel.findById({ _id: id });
         if (!product) {
@@ -82,6 +89,14 @@ export async function PUT(req: NextRequest) {
         image_urls && (product.image_urls = image_urls);
         categories && (product.categories = categories);
         tags && (product.tags = tags);
+        isFeatured && (product.isFeatured = isFeatured);
+        images && (product.images = images);
+        colour_pallette && (product.colour_pallette = colour_pallette);
+        features && (product.features = features);
+        used_tools && (product.used_tools = used_tools);
+        featuringCompanies && (product.featuringCompanies = featuringCompanies);
+
+
 
         try {
             await product.save();

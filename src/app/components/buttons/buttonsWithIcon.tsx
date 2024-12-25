@@ -7,14 +7,21 @@ interface ButtonWithIconProps {
     classNames?: string;
     disabled?: boolean;
     rtl?: boolean;
+    id?: string;
+    isLink?: boolean;
 }
 
-export const ButtonWithIcon = ({ icon, label, onClick, classNames, disabled, rtl }: ButtonWithIconProps) => {
+export const ButtonWithIcon = ({ icon, label, onClick, classNames, disabled, rtl, id, isLink }: ButtonWithIconProps) => {
 
 
     return (
-        <button onClick={onClick} disabled={disabled} className={`flex items-center ${rtl ? 'flex-row-reverse' : 'flex-row'} justify-center px-4 py-2 bg-white text-black rounded-md ${classNames}`}>
-            <span className="pointer-events-none"> {icon}</span>
+        <button id={id} onClick={onClick} disabled={disabled}
+            className={`flex items-center justify-center  rounded-md  mb-6
+            ${classNames}
+             ${rtl ? 'flex-row-reverse' : 'flex-row'}
+             ${isLink ? 'pointer-events-none' : 'pointer-events-auto'} `
+            }>
+            <span className={isLink ? 'pointer-events-auto' : 'pointer-events-none'}> {icon}</span>
             <span className="ml-2 pointer-events-none">{label}</span>
         </button>
     )
