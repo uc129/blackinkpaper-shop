@@ -86,21 +86,21 @@ export default function RootLayout(props: { children: React.ReactNode, }) {
     <html lang="en">
       <body className={`${ibm.className} ${ibmCondensed.variable} ${tofino.variable}  
       font-normal antialiased overflow-visible *:overflow-visible grid grid-cols-1 gap-2 `} >
-        <StrictMode>
-          <AuthProvider>
-            <WindowProvider>
-              <ScrollProvider >
-                <StoreProvider>
-                  <Navbar />
-                  <Toaster />
-                  <main className=" overflow-hidden">
-                    {props.children}
-                  </main>
-                </StoreProvider>
-              </ScrollProvider>
-            </WindowProvider>
-          </AuthProvider>
-        </StrictMode>
+        {/* <StrictMode> */}
+        <AuthProvider>
+          <WindowProvider>
+            <ScrollProvider >
+              <StoreProvider>
+                <Navbar />
+                <Toaster />
+                <main className=" overflow-hidden">
+                  {props.children}
+                </main>
+              </StoreProvider>
+            </ScrollProvider>
+          </WindowProvider>
+        </AuthProvider>
+        {/* </StrictMode> */}
       </body>
     </html>
   );
