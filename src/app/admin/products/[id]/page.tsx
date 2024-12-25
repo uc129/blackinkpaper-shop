@@ -13,9 +13,7 @@ import { useParams } from 'next/navigation'
 import React, { useEffect } from 'react'
 import toast from 'react-hot-toast';
 import mongoose from 'mongoose';
-import { useRouter } from 'next/navigation';
 import FormContainer from '@/app/components/form-components/form-container';
-import { set } from 'mongoose';
 import { ImageUploadButton } from '@/app/components/buttons/upload-image-button';
 import { deleteFromCloudinary } from '@/app/api/imageDeleteFromCloudinary';
 
@@ -26,7 +24,6 @@ export default function ManageProductsPage() {
 
 
     const { id } = useParams()
-    const router = useRouter()
     const { ArrowArcLeft } = usePhosphorIcons()
 
     const [loading, setLoading] = React.useState(true)
@@ -95,15 +92,15 @@ export default function ManageProductsPage() {
 
     }, [categories, product])
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target
+        const { name, value } = e.currentTarget
         if (name === 'inStock' || name === 'active' || name === 'isFeatured') {
-            setEditedDetails((prev: any) => ({ ...prev, [name]: e.target.checked }))
+            setEditedDetails((prev) => ({ ...prev, [name]: e.currentTarget.checked }))
             return
         }
-        setEditedDetails((prev: any) => ({ ...prev, [name]: value }))
+        setEditedDetails((prev) => ({ ...prev, [name]: value }))
     }
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const { name, value } = e.target
+        const { value } = e.target
         setSelectedCategories((prev) => [...prev, value])
     }
     const [enableDelete, setEnableDelete] = React.useState(false)
@@ -117,7 +114,7 @@ export default function ManageProductsPage() {
                 alert('Product deleted successfully')
                 toast.success('Product deleted successfully')
 
-                let productImages = product?.images.map((img) => img.publicId);
+                const productImages = product?.images.map((img) => img.publicId);
                 deleteFromCloudinary(productImages as string[]).then((data) => {
                     if (data.status === 200) {
                         console.log('deleted from cloudinary');
@@ -181,9 +178,9 @@ export default function ManageProductsPage() {
             }
         });
 
-        let deletedImageUrls = product?.image_urls.filter((img) => !editedImages.includes(img));
+        const deletedImageUrls = product?.image_urls.filter((img) => !editedImages.includes(img));
 
-        let publicIds = deletedImageUrls?.map((url) => {
+        const publicIds = deletedImageUrls?.map((url) => {
             return product?.images.find(((img) => {
                 return img.url === url || img.secure_url === url
             }))?.publicId;
@@ -320,7 +317,7 @@ export default function ManageProductsPage() {
                     <p>Are you sure you want to delete this product?</p>
                     <div className='grid grid-cols-2'>
                         <button onClick={handleDelete}>Yes</button>
-                        <button onClick={(e) => { e.preventDefault(); setEnableDelete((prev) => prev = false) }} >No</button>
+                        <button onClick={(e) => { e.preventDefault(); setEnableDelete(false) }}>No</button>
                     </div>
 
 

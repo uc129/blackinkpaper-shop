@@ -9,7 +9,6 @@ import { ScrollProvider } from "./lib/utils/scrollObserver";
 
 import { IBM_Plex_Sans, IBM_Plex_Sans_Condensed } from 'next/font/google'
 import { WindowProvider } from "./lib/utils/windowContext";
-import { StrictMode } from "react";
 
 
 

@@ -2,7 +2,6 @@
 
 import { useAuthContext } from "@/app/auth/auth-context"
 import { useStoreContext } from "@/app/lib/data-store/store"
-import Image from "next/image"
 import { useEffect, useState } from "react"
 import { ProductCard } from "./product-card"
 

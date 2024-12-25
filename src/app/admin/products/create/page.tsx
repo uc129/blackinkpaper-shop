@@ -40,7 +40,7 @@ type Step1FormData = Partial<IProduct>
 
 // Form Steps
 
-const step1 = ({ retrieveData, retrieveErrors, nextClick }:
+const Step1 = ({ retrieveData, retrieveErrors, nextClick }:
     {
         retrieveData: (formData: Step1FormData) => void,
         retrieveErrors: (error: boolean) => void; nextClick: boolean
@@ -159,7 +159,7 @@ const step1 = ({ retrieveData, retrieveErrors, nextClick }:
 
     useEffect(() => {
         if (!nextClick) return
-        let error = validateProductData(formData)
+        const error = validateProductData(formData)
         retrieveErrors(error)
     }, [nextClick])
 
@@ -199,7 +199,7 @@ const step1 = ({ retrieveData, retrieveErrors, nextClick }:
 
 }
 
-const step2 = ({ retrieveCategoriesList, categories }: { retrieveCategoriesList: (list: CustomSelectOptionsProps[]) => void, categories: IProductCategory[] }) => {
+const Step2 = ({ retrieveCategoriesList, categories }: { retrieveCategoriesList: (list: CustomSelectOptionsProps[]) => void, categories: IProductCategory[] }) => {
 
 
 
@@ -276,7 +276,7 @@ const step2 = ({ retrieveCategoriesList, categories }: { retrieveCategoriesList:
 
 }
 
-const step3 = ({ retrieveImagesList, retrieveImageData }: { retrieveImagesList: (list: string[]) => void; retrieveImageData: (data: ImageData[]) => void }) => {
+const Step3 = ({ retrieveImagesList, retrieveImageData }: { retrieveImagesList: (list: string[]) => void; retrieveImageData: (data: ImageData[]) => void }) => {
 
     const [image, setImage] = useState<string>('')
     const [images, setImages] = useState<string[]>([])
@@ -285,7 +285,7 @@ const step3 = ({ retrieveImagesList, retrieveImageData }: { retrieveImagesList: 
 
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let value = e.target.value
+        const value = e.target.value
         setImage((prev) => prev = value)
     }
 
@@ -408,7 +408,7 @@ export default function CreateNewProduct() {
     }, [categories])
 
 
-    const steps = [step1(
+    const steps = [Step1(
         {
             retrieveData: (formData) => {
                 setStep1FormData(formData)
@@ -419,8 +419,7 @@ export default function CreateNewProduct() {
             }
         }),
 
-
-    step2({
+    Step2({
         retrieveCategoriesList: (list) => {
             setCategoriesList(list)
             if (list.length === 0) {
@@ -429,7 +428,8 @@ export default function CreateNewProduct() {
         },
         categories: categoriesFromApi as unknown as IProductCategory[]
     }),
-    step3(
+
+    Step3(
         {
             retrieveImagesList: (list) => {
                 setImagesList(list)
@@ -447,13 +447,13 @@ export default function CreateNewProduct() {
     const handleFormsSave = (e: React.MouseEvent) => {
         e.preventDefault()
 
-        let data = {
+        const data = {
             ...Step1formData,
             categories: categoriesList.map((c) => c.value),
             image_urls: imagesList,
             images: imageDataList,
         }
-        console.log(data)
+        // console.log(data)
         try {
             createProduct(data).then((res) => {
                 console.log(res)
@@ -504,7 +504,7 @@ export default function CreateNewProduct() {
     }
 
     useEffect(() => {
-        let timer = setTimeout(() => {
+        const timer = setTimeout(() => {
             if (!nextClick) return
             if (errors) return
             nextStep()

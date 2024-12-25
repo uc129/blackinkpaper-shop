@@ -7,7 +7,7 @@ import Link from "next/link";
 export const ProductCard = (props: { product: IProduct }) => {
 
     const imagesLength = props.product.image_urls.length;
-    let imageIndex = Math.floor((imagesLength - 1) / 2);
+    const imageIndex = Math.floor((imagesLength - 1) / 2);
 
     return (
         <div className="flex gap-4" >

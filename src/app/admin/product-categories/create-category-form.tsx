@@ -34,8 +34,8 @@ const CreateCategoryForm = () => {
             alert('Please provide all required fields');
             return;
         }
-        let category = await createProductCategory(formData.title, formData.description, formData.tagline);
-        console.log('category', category);
+        const category = await createProductCategory(formData.title, formData.description, formData.tagline);
+        // console.log('category', category);
         if (category) {
             setFormData({
                 title: '',
