@@ -2,7 +2,6 @@ import { IProduct } from "@/app/api/products/products.model";
 import { SmallProductCard } from "../ui/product-cards/card-small-book-type";
 import { ListContainer } from "../containers/list-container";
 import { useEffect } from "react";
-import Link from "next/link";
 import { ButtonWithLink } from "../buttons/buttonWithLink";
 
 

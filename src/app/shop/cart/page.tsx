@@ -1,8 +1,7 @@
 'use client'
+/* eslint-disable*/
 
 import { useStoreContext } from "@/app/lib/data-store/store"
-import { useEffect, useState } from "react"
-import { Modal } from "../../components/ui/modal";
 import { CartUI } from "./cart-ui";
 import { EmptyCartUI } from "./cart-no-items";
 

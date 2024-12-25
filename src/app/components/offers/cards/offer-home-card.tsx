@@ -15,9 +15,9 @@ interface IOffer {
 
 export const OffersHomeCard = (props: IOffer) => {
 
-    let { isMobile } = useWindowContext();
+    const { isMobile } = useWindowContext();
 
-    let width = isMobile ? 400 : 600;
+    const width = isMobile ? 400 : 600;
 
     return (
         <article className='max-w-[500px]'>

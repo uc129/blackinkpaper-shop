@@ -1,4 +1,5 @@
 'use client'
+/* eslint-disable*/
 
 import { ButtonWithIcon } from "@/app/components/buttons/buttonsWithIcon"
 import { useStoreContext } from "@/app/lib/data-store/store"

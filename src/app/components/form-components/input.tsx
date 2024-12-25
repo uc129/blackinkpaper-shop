@@ -1,5 +1,4 @@
 
-type InputTypes = 'text' | 'email' | 'password' | 'number' | 'tel' | 'date' | 'time' | 'search' | 'url' | 'file' | 'hidden' | 'color' | 'datetime-local' | 'month' | 'week';
 type widthTypes = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 interface CustomInputProps {
     id?: string;

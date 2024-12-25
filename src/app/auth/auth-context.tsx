@@ -3,8 +3,6 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { checkAuth } from './auth';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { set } from 'mongoose';
 
 
 

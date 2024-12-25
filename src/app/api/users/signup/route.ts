@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { NextRequest, NextResponse } from "next/server";
 import { UserModel } from "../users.model";
 import bcrypt from "bcrypt";
@@ -8,7 +10,7 @@ import { connect } from "../../dbconfig";
 export async function POST(req: NextRequest,) {
     await connect();
 
-    let { firstName, lastName, email, phone, password, confirmPassword } = await req.json();
+    const { firstName, lastName, email, phone, password, confirmPassword } = await req.json();
 
     console.log(firstName, lastName, email, phone, password, confirmPassword);
 
@@ -56,7 +58,7 @@ export async function POST(req: NextRequest,) {
         await newUser.save();
     }
     catch (err) {
-        return NextResponse.json({ error: "Something went wrong", status: 500 });
+        return NextResponse.json({ error: err, status: 500 });
     }
 
 

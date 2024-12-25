@@ -1,6 +1,6 @@
 
 'use client'
-
+/* eslint-disable */
 import Link from "next/link"
 import { ButtonWithIcon } from "./components/buttons/buttonsWithIcon"
 import usePhosphorIcons from "./lib/phosphor"

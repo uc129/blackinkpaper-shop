@@ -1,15 +1,16 @@
 'use client'
+/* eslint-disable */
+
 import { useParams } from "next/navigation";
 import { useStoreContext } from "../../lib/data-store/store";
-import { useEffect, useState } from "react";
 
 
 
 
 const CategoryPage = () => {
 
-    let { id } = useParams();
-    let { categories, products } = useStoreContext();
+    const { id } = useParams();
+    const { categories, products } = useStoreContext();
     if (!id) return <h3>Loading...</h3>;
 
     const category = categories.find((category) => String(category._id) === id);

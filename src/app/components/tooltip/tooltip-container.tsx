@@ -34,7 +34,7 @@ export const ToolTipContainer = (props: ToolTipContainerProps) => {
 
 
 
-    let top = props.top ? props.top : 'top-[4rem]';
+    const top = props.top ? props.top : 'top-[4rem]';
 
     return (
         <div className={`relative ${props.classNames}`}>

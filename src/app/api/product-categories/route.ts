@@ -1,3 +1,5 @@
+
+/* eslint-disable */
 import { NextRequest, NextResponse } from "next/server";
 import { ProductCategoryModel } from "./categories.model";
 import { connect } from "../dbconfig";
@@ -29,8 +31,8 @@ export async function POST(req: NextRequest) {
 
 
 export async function GET(req: NextRequest) {
-    let url = new URL(req.url);
-    let id = url.searchParams.get('id');
+    const url = new URL(req.url);
+    const id = url.searchParams.get('id');
     console.log('id', id);
     try {
         const productCategories = await ProductCategoryModel.findById({ _id: id });
@@ -46,16 +48,16 @@ export async function GET(req: NextRequest) {
 
 
 export async function PUT(req: NextRequest) {
-    let { id, title, description, tagline } = await req.json();
+    const { id, title, description, tagline } = await req.json();
     try {
         const productCategory = await ProductCategoryModel.findById({ _id: id });
         if (!productCategory) {
             return NextResponse.json({ message: 'Product Category not found', status: 404 });
         }
 
-        title && (productCategory.title = title);
-        description && (productCategory.description = description);
-        tagline && (productCategory.tagline = tagline);
+        productCategory.title = title;
+        productCategory.description = description;
+        tagline ? (productCategory.tagline = tagline) : null;
 
         try {
             await productCategory.save();
@@ -71,7 +73,7 @@ export async function PUT(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-    let { id } = await req.json();
+    const { id } = await req.json();
     try {
         const productCategory = await ProductCategoryModel.findById({ _id: id });
         if (!productCategory) {

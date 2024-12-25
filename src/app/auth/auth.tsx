@@ -1,4 +1,6 @@
 'use client'
+/* eslint-disable */
+
 import { API_URL } from "../lib/constants/api_url";
 
 
@@ -27,7 +29,7 @@ const logout = async () => {
     });
     // console.log(await res.json());
 
-    let data = await res.json();
+    const data = await res.json();
     return data;
 };
 

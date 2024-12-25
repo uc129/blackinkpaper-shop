@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 
 
@@ -29,6 +29,7 @@ const ProductCategorySchema: Schema = new Schema({
 
 });
 
-const ProductCategoryModel = mongoose.models.ProductCategory || mongoose.model<IProductCategory>('ProductCategory', ProductCategorySchema);
+const ProductCategoryModel = mongoose.model<IProductCategory>('ProductCategory', ProductCategorySchema);
 
-export { ProductCategoryModel, ProductCategorySchema };
+export { ProductCategorySchema, ProductCategoryModel };
+export default ProductCategoryModel;

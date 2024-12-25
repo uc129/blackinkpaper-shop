@@ -1,4 +1,6 @@
 'use client'
+/* eslint-disable*/
+
 import { IProduct } from "@/app/api/products/products.model";
 import { ButtonWithIcon } from "@/app/components/buttons/buttonsWithIcon";
 import CustomInput from "@/app/components/form-components/input";

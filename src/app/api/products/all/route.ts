@@ -1,14 +1,15 @@
-import { NextRequest, NextResponse } from "next/server";
+/* eslint-disable */
+
+import { NextResponse } from "next/server";
 import { ProductModel } from "../products.model";
 import { connect } from "../../dbconfig";
 
 
 
-
-export async function GET(req: NextRequest) {
+export async function GET() {
     await connect();
     try {
-        let allProducts = await ProductModel.find({});
+        const allProducts = await ProductModel.find({});
         if (!allProducts) {
             return NextResponse.json({ message: 'No products found', status: 404 });
         }

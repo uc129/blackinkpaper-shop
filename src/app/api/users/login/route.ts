@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 export async function POST(req: NextRequest,) {
     await connect();
 
-    let { email, password } = await req.json();
+    const { email, password } = await req.json();
 
     if (!email || !password) {
         return NextResponse.json({ error: "Please fill in all fields", status: 400 });

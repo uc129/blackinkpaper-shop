@@ -1,4 +1,5 @@
 'use client'
+/* eslint-disable*/
 
 import { IProduct } from "@/app/api/products/products.model"
 import Image from "next/image";
@@ -18,23 +19,23 @@ export const SmallProductCard = (props: { product: IProduct }) => {
     const [imageProps, setImageProps] = useState({ src: '/placeholder.png', alt: '', index: 0 });
 
     const { categories } = useStoreContext();
-    if (!props.product) return <h3>Loading Product...</h3>;
-    let productCategories = categories.filter((category) => {
+    const productCategories = categories.filter((category) => {
         return props.product.categories.includes(category._id!);
     });
 
-    // let imageIndex = Math.floor(Math.random() * props.product.image_urls.length / 2);
-    // let imageLink = props.product.image_urls[imageIndex] || '/placeholder.png';
-    // let rotate = 0;
+    // const imageIndex = Math.floor(Math.random() * props.product.image_urls.length / 2);
+    // const imageLink = props.product.image_urls[imageIndex] || '/placeholder.png';
+    // const rotate = 0;
 
     useEffect(() => {
-        let imageIndex = Math.floor(Math.random() * props.product.image_urls.length / 2);
-        let imageLink = props.product.image_urls[imageIndex] || '/placeholder.png';
-        // let rotate = 0;
+        const imageIndex = Math.floor(Math.random() * props.product.image_urls.length / 2);
+        const imageLink = props.product.image_urls[imageIndex] || '/placeholder.png';
+        // const rotate = 0;
         setImageProps({ src: imageLink, alt: props.product.title, index: imageIndex });
 
     }, [props.product]);
 
+    if (!props.product) return <h3>Loading Product...</h3>;
 
 
 

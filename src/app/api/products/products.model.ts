@@ -1,5 +1,5 @@
 import { ImageData } from '@/app/components/buttons/upload-image-button';
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 
 export interface IProduct {
@@ -84,6 +84,6 @@ const ProductSchema: Schema = new Schema({
     totalPurchaseCount: { type: Number },
 });
 
-const ProductModel = mongoose.models.Product || mongoose.model<IProduct>('Product', ProductSchema);
+const ProductModel = mongoose.model<IProduct>('Product', ProductSchema);
 
 export { ProductModel, ProductSchema };

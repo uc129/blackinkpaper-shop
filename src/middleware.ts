@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server'
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-    let cookies = request.cookies.get('token');
+    const cookies = request.cookies.get('token');
     if (cookies) {
         return NextResponse.next()
     }

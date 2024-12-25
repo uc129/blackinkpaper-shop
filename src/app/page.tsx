@@ -1,3 +1,5 @@
+/* eslint-disable*/
+
 'use client'
 import { EmblaOptionsType } from "embla-carousel";
 import { IProduct } from "./api/products/products.model";

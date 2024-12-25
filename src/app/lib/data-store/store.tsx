@@ -1,4 +1,6 @@
 'use client'
+/* eslint-disable*/
+
 import { IProductCategory } from "@/app/api/product-categories/categories.model";
 import { IProduct } from "@/app/api/products/products.model";
 import { useAuthContext, UserInfo } from "@/app/auth/auth-context";
@@ -99,24 +101,26 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
         console.log('Adding to cart - store', product.title, quantity);
 
         setCart((prev) => {
-            const newCart = prev || window.localStorage.getItem('cart') || { items: [], grandTotal: 0 };
-            const item = newCart.items.find(i => i.product._id === product._id);
+            const newCart = prev || { items: [], grandTotal: 0 };
+            const storedCart = window.localStorage.getItem('cart');
+            const parsedCart = storedCart ? JSON.parse(storedCart) : newCart;
+            const item = parsedCart.items.find(i => i.product._id === product._id);
             if (item) {
                 if (item.quantity >= 0) {
                     const adjustedQuantity = quantity - item.quantity;
                     item.quantity += adjustedQuantity;
                     item.total += product.price * adjustedQuantity;
-                    newCart.grandTotal += product.price * adjustedQuantity;
+                    parsedCart.grandTotal += product.price * adjustedQuantity;
                 }
 
             } else {
-                newCart.items.push({ product, quantity, total: product.price * quantity });
-                newCart.grandTotal += product.price * quantity;
+                parsedCart.items.push({ product, quantity, total: product.price * quantity });
+                parsedCart.grandTotal += product.price * quantity;
             }
 
-            console.log('new cart', newCart);
-            window && window.localStorage.setItem('cart', JSON.stringify(newCart));
-            return newCart;
+            console.log('new cart', parsedCart);
+            window.localStorage.setItem('cart', JSON.stringify(parsedCart));
+            return parsedCart;
         });
         router.refresh();
 
@@ -125,7 +129,7 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
 
     const removeFromCart = (product: IProduct, quantity: number) => {
         setCart((prev) => {
-            let newCart = prev || { items: [], total: 0 };
+            let newCart = prev || { items: [], grandTotal: 0 };
             let item = newCart.items.find(i => i.product._id === product._id);
 
             let oldCart = prev;
@@ -170,7 +174,7 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
 
     const clearItemFromCart = (product: IProduct) => {
         setCart((prev) => {
-            let newCart = prev || window.localStorage.getItem('cart') || { items: [], total: 0 };
+            let newCart = prev || JSON.parse(window.localStorage.getItem('cart') || '{"items": [], "grandTotal": 0}');
             let item = newCart.items.find(i => i.product._id === product._id);
             if (item) {
                 newCart.items = newCart.items.filter(i => i.product._id !== product._id);

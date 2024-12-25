@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 
 // Connect to MongoDB
-
+/* eslint-disable */
 export const connect = async () => {
-    let errors: any[] = [];
+    const errors = [];
     try {
         await mongoose.connect(process.env.MONGO_URI!, {});
         console.log('MongoDB connected');

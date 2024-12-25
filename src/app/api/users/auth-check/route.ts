@@ -6,8 +6,8 @@ import { connect } from "../../dbconfig";
 export async function GET(req: NextRequest,) {
     await connect();
 
-    let cookies = req.cookies;
-    let token = cookies.get('token');
+    const cookies = req.cookies;
+    const token = cookies.get('token');
 
 
     if (!token) {
@@ -15,7 +15,7 @@ export async function GET(req: NextRequest,) {
         return NextResponse.json({ message: "Not authenticated, no token", status: 401 });
     }
 
-    let tokenValue = token.value;
+    const tokenValue = token.value;
     const user = await UserModel.findOne({ verifyToken: tokenValue },
         'firstName lastName email isAdmin isVerified phone addresses avatar lastLogin  isDeleted createdAt updatedAt deletedAt');
 

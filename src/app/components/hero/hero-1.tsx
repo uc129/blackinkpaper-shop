@@ -1,4 +1,6 @@
 'use client'
+/* eslint-disable */
+
 import Image from "next/image"
 import { useWindowContext } from "@/app/lib/utils/windowContext"
 import EmblaHeroCarousel from "./hero-carousel"

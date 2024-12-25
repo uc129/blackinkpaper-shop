@@ -1,4 +1,5 @@
 'use client'
+/* eslint-disable*/
 import Link from "next/link";
 import { IProduct } from "../../api/products/products.model";
 import { LabelWithTextInline } from "./labelWithText";

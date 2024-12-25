@@ -2,12 +2,11 @@
 
 import { useStoreContext } from "@/app/lib/data-store/store";
 import { useParams } from "next/navigation"
-import { ProductCard } from "../../../components/ui/productCard";
 
 export default function ShopProductPage() {
     const { id } = useParams()
     const { products } = useStoreContext()
-    const product = products.find((product) => product._id === id)
+    const product = products.find((product) => product._id.toString() === id)
 
     if (!product) {
         return (

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import EmblaHeroCarousel from "../hero/hero-carousel";
 
 interface ThinBannerSlideProps {

@@ -155,13 +155,13 @@ const Step1 = ({ retrieveData, retrieveErrors, nextClick }:
         if (formData.title && formData.description) {
             retrieveData(formData)
         }
-    }, [formData])
+    }, [formData, retrieveData])
 
     useEffect(() => {
         if (!nextClick) return
         const error = validateProductData(formData)
         retrieveErrors(error)
-    }, [nextClick])
+    }, [nextClick, formData, retrieveErrors])
 
     return (
         <FormContainer title="Add Product Details "
@@ -236,9 +236,8 @@ const Step2 = ({ retrieveCategoriesList, categories }: { retrieveCategoriesList:
     }
 
     useEffect(() => {
-        categoriesList.length > 0 &&
-            retrieveCategoriesList(categoriesList)
-    })
+        retrieveCategoriesList(categoriesList)
+    }, [categoriesList, retrieveCategoriesList])
 
     return (
         <FormContainer title="Add Product Categories" description={'Add categories to the product'} >
@@ -286,7 +285,7 @@ const Step3 = ({ retrieveImagesList, retrieveImageData }: { retrieveImagesList: 
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
-        setImage((prev) => prev = value)
+        setImage(value)
     }
 
     const handleAddImage = (e: React.MouseEvent) => {
@@ -305,11 +304,9 @@ const Step3 = ({ retrieveImagesList, retrieveImageData }: { retrieveImagesList: 
     }
 
     useEffect(() => {
-        images.length > 0 &&
-            retrieveImagesList(images)
-        imageDataArray.length > 0 &&
-            retrieveImageData(imageDataArray)
-    }, [images, imageDataArray])
+        retrieveImagesList(images)
+        retrieveImageData(imageDataArray)
+    }, [images, imageDataArray, retrieveImagesList, retrieveImageData])
 
 
     const handleImageFileUrls = (urls: string[], imageData: ImageData[]) => {
@@ -317,7 +314,6 @@ const Step3 = ({ retrieveImagesList, retrieveImageData }: { retrieveImagesList: 
         setImageDataArray((prev) => [...prev, ...imageData])
         console.log('urls', urls);
         console.log('imageData', imageData);
-
     }
 
     const imageUrlToolTipContent = <div className=" w-full">
@@ -511,7 +507,7 @@ export default function CreateNewProduct() {
             setNextClick(false)
         }, 1000)
         return () => clearTimeout(timer)
-    }, [nextClick, errors])
+    }, [nextClick, errors, nextStep])
 
 
 

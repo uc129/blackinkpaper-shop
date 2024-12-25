@@ -13,7 +13,7 @@ type PropType = {
 
 const EmblaHeroCarousel: React.FC<PropType> = (props) => {
     const { slides, options } = props
-    const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay({ delay: props.interval || 8000 })])
+    const [emblaRef] = useEmblaCarousel(options, [Autoplay({ delay: props.interval || 8000 })])
 
     return (
         <section className="embla_hero -z-0">

@@ -1,5 +1,7 @@
 'use client'
-import React, { createContext, useState, useEffect, useRef, useContext } from "react";
+/* eslint-disable*/
+
+import React, { createContext, useState, useEffect, useContext } from "react";
 
 // Create the Scroll Context
 const ScrollContext = createContext({

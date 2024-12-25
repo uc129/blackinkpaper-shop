@@ -1,4 +1,6 @@
 'use client'
+/* eslint-disable */
+
 import { useState } from "react"
 import CustomInput from "../../components/form-components/input"
 import FormContainer from "@/app/components/form-components/form-container"

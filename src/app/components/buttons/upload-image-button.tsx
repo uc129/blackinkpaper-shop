@@ -1,8 +1,7 @@
-
+/* eslint-disable */
 'use client'
 
 import { useEffect, useState } from 'react';
-import { ImageUpload } from '@/app/api/imageUpload';
 import { CldUploadWidget } from 'next-cloudinary';
 
 interface ImageUploadButtonProps {

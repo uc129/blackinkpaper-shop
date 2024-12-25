@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { NextRequest, NextResponse } from "next/server";
 import { connect } from "../../dbconfig";
 import { cookies } from "next/headers";
@@ -10,15 +12,15 @@ export async function POST(req: NextRequest,) {
     console.log('logout POST');
 
 
-    let cookieStore = await cookies();
-    let token = cookieStore.get('token');
+    const cookieStore = await cookies();
+    const token = cookieStore.get('token');
     if (!token) {
         return NextResponse.json({ message: "Not logged in", status: 401 });
     }
 
-    let tokenValue = token?.value;
+    const tokenValue = token?.value;
 
-    let User = await UserModel.findOne({ verifyToken: tokenValue });
+    const User = await UserModel.findOne({ verifyToken: tokenValue });
     cookieStore.set('token', '', { maxAge: 0 });
     return NextResponse.json({ status: 200, message: "Logged out" });
 

@@ -1,8 +1,4 @@
 'use client'
-import { useEffect } from "react"
-
-
-
 
 export const PopOverModal = (props: { children: React.ReactNode, id: string, classNames?: string }) => {
 
