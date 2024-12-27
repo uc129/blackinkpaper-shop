@@ -74,6 +74,8 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
     let { user } = useAuthContext();
 
     const fetchProducts = async () => {
+        console.log('Fetching products');
+
         let response = await getAllProducts();
         if (response) {
             setProducts(response.data);
@@ -85,7 +87,6 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         if (!products || products.length <= 0) {
             fetchProducts();
-
         }
     }, [products, fetchProducts])
 
