@@ -11,7 +11,8 @@ export async function POST(req: NextRequest) {
     try {
 
         const { title, description, tagline, price, discountPercentage, stock, inStock, active,
-            image_urls, categories, tags, isFeatured, images, colour_pallette, used_tools, features, featuringCompanies }: IProduct = await req.json();
+            image_urls, categories, tags, isFeatured, images, colour_pallette, used_tools, features, featuringCompanies }
+            : IProduct = await req.json();
 
         if (!title || !description || !tagline || !price || !image_urls || !categories || !images) {
             return NextResponse.json({ message: 'Please provide all required fields', status: 400 });

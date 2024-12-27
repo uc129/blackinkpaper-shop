@@ -50,7 +50,6 @@ export async function POST(req: NextRequest,) {
     });
     req.cookies.set('token', token)
 
-    console.log('response', response);
     return response;
 
 }
