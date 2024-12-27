@@ -1,12 +1,11 @@
 'use client'
 /* eslint-disable */
 
-import { API_URL } from "../lib/constants/api_url";
 
 
 
 const login = async (email: string, password: string) => {
-    const res = await fetch(`${API_URL}/users/login`, {
+    const res = await fetch(`/api/users/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -21,7 +20,7 @@ const login = async (email: string, password: string) => {
 
 
 const logout = async () => {
-    const res = await fetch(`${API_URL}/users/logout`, {
+    const res = await fetch(`/api/users/logout`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -38,7 +37,7 @@ const logout = async () => {
 
 
 const signup = async (firstName: string, lastName: string, email: string, phone: string, password: string, confirmPassword: string) => {
-    const res = await fetch(`${API_URL}/users/signup`, {
+    const res = await fetch(`/api/users/signup`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -49,7 +48,7 @@ const signup = async (firstName: string, lastName: string, email: string, phone:
 }
 
 const verify = async (email: string, token: string) => {
-    const res = await fetch(`${API_URL}/users/verify`, {
+    const res = await fetch(`/api/users/verify`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -72,7 +71,7 @@ const forgotPassword = async (email: string) => {
 
 
 const resetPassword = async (email: string, token: string, password: string) => {
-    const res = await fetch(`${API_URL}/users/reset-password`, {
+    const res = await fetch(`/api/users/reset-password`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -84,7 +83,7 @@ const resetPassword = async (email: string, token: string, password: string) => 
 
 
 const updatePassword = async (email: string, password: string, newPassword: string) => {
-    const res = await fetch(`${API_URL}/users/update-password`, {
+    const res = await fetch(`/api/users/update-password`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -96,7 +95,7 @@ const updatePassword = async (email: string, password: string, newPassword: stri
 
 
 const checkAuth = async () => {
-    const res = await fetch(`${API_URL}/users/auth-check`, {
+    const res = await fetch(`/api/users/auth-check`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

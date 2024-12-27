@@ -4,7 +4,7 @@ import { revalidateTag } from "next/cache";
 
 const getAllProductCategories = async () => {
     try {
-        const response = await fetch(`/product-categories/all`, {
+        const response = await fetch(`/api/product-categories/all`, {
             method: 'GET',
             cache: 'force-cache',
 
@@ -30,7 +30,7 @@ const getAllProductCategories = async () => {
 const getProductCategoryById = async (id: string) => {
 
     try {
-        const response = await fetch(`/product-categories?id=${id}`, {
+        const response = await fetch(`/api/product-categories?id=${id}`, {
             method: 'GET',
             cache: 'force-cache',
             next: {
@@ -54,7 +54,7 @@ const getProductCategoryById = async (id: string) => {
 
 const createProductCategory = async (title: string, description: string, tagline: string) => {
     try {
-        const response = await fetch(`/product-categories`, {
+        const response = await fetch(`/api/product-categories`, {
             method: 'POST',
             body: JSON.stringify({ title, description, tagline }),
         });
@@ -75,7 +75,7 @@ const createProductCategory = async (title: string, description: string, tagline
 
 const updateProductCategory = async (id: string, title: string, description: string, tagline: string) => {
     try {
-        const response = await fetch(`/product-categories`, {
+        const response = await fetch(`/api/product-categories`, {
             method: 'PUT',
             body: JSON.stringify({ id, title, description, tagline }),
         });
@@ -95,7 +95,7 @@ const updateProductCategory = async (id: string, title: string, description: str
 
 const deleteProductCategory = async (id: string) => {
     try {
-        const response = await fetch(`/product-categories`, {
+        const response = await fetch(`/api/product-categories`, {
             method: 'DELETE',
             body: JSON.stringify({ id }),
         });
