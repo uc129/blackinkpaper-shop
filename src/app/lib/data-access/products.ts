@@ -6,7 +6,7 @@ import { revalidateTag } from "next/cache";
 let ApiUrl = process.env.API_URL || "http://localhost:3000/api"
 
 export async function getAllProducts() {
-    const response = await fetch(`${ApiUrl}/products/all`, {
+    const response = await fetch(`/products/all`, {
         method: 'GET',
         cache: 'force-cache',
         next: {
@@ -19,7 +19,7 @@ export async function getAllProducts() {
 }
 
 export async function getProductById(id: string) {
-    const response = await fetch(`${ApiUrl}/products?id=${id}`, {
+    const response = await fetch(`/products?id=${id}`, {
         method: 'GET',
         cache: 'force-cache',
         next: {
@@ -33,7 +33,7 @@ export async function getProductById(id: string) {
 
 
 export async function createProduct(productData: any) {
-    const response = await fetch(`${ApiUrl}/products`, {
+    const response = await fetch(`/products`, {
         method: 'POST',
         body: JSON.stringify(productData),
     });
@@ -46,7 +46,7 @@ export async function createProduct(productData: any) {
 
 
 export async function updateProduct(id: string, productData: any) {
-    const response = await fetch(`${ApiUrl}/products`, {
+    const response = await fetch(`/products`, {
         method: 'PUT',
         body: JSON.stringify(productData),
     });
@@ -59,7 +59,7 @@ export async function updateProduct(id: string, productData: any) {
 
 
 export async function deleteProduct(id: string) {
-    const response = await fetch(`${ApiUrl}/products?id=${id}`, {
+    const response = await fetch(`/products?id=${id}`, {
         method: 'DELETE',
     });
     const data = await response.json();
