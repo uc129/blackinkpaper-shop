@@ -7,14 +7,18 @@ import { ProductCard } from "./product-card"
 
 const AllProductsPage = () => {
 
-    const { products } = useStoreContext()
+    const { products, fetchProducts } = useStoreContext()
     const [loading, setLoading] = useState(true)
     const { isAuthenticated } = useAuthContext()
 
     useEffect(() => {
+        console.log('products', products);
         if (products) setLoading(false)
-        else setLoading(true)
-    }, [products])
+        else {
+            setLoading(true)
+            fetchProducts()
+        }
+    }, [products, fetchProducts, setLoading])
 
 
     if (!isAuthenticated) {

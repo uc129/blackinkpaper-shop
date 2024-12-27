@@ -24,7 +24,9 @@ export interface ICart {
 
 interface StoreContextType {
     products: IProduct[];
+    fetchProducts?: () => void;
     categories: IProductCategory[];
+    fetchCategories?: () => void;
     cart: ICart;
     userInfo: UserInfo | null;
     addToCart: (product: IProduct, quantity: number) => void;
@@ -85,7 +87,7 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
             fetchProducts();
 
         }
-    }, [products])
+    }, [products, fetchProducts])
 
     const fetchCategories = async () => {
         const response = await getAllProductCategories();
@@ -99,7 +101,7 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
         if (categories.length <= 0) {
             fetchCategories();
         }
-    }, [categories])
+    }, [categories, fetchCategories])
 
     const addToCart = (product: IProduct, quantity: number) => {
         console.log('Adding to cart - store', product.title, quantity);
@@ -204,7 +206,7 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
     }, [user])
 
     return (
-        <StoreContext.Provider value={{ products, categories, cart, userInfo, addToCart, removeFromCart, clearItemFromCart, clearCart }}>
+        <StoreContext.Provider value={{ products, fetchCategories, fetchProducts, categories, cart, userInfo, addToCart, removeFromCart, clearItemFromCart, clearCart }}>
             {children}
         </StoreContext.Provider>
     )
