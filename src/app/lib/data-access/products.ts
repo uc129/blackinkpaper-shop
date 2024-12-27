@@ -3,7 +3,6 @@
 
 import { revalidateTag } from "next/cache";
 
-let ApiUrl = process.env.API_URL || "http://localhost:3000/api"
 
 export async function getAllProducts() {
     const response = await fetch(`/products/all`, {

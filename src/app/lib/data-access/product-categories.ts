@@ -1,6 +1,5 @@
 'use server'
 import { revalidateTag } from "next/cache";
-import { API_URL } from "../constants/api_url";
 
 
 const getAllProductCategories = async () => {
