@@ -9,7 +9,6 @@ const AllProductsPage = () => {
 
     const { products } = useStoreContext()
     const [loading, setLoading] = useState(true)
-
     const { isAuthenticated } = useAuthContext()
 
     useEffect(() => {

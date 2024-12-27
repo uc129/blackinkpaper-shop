@@ -75,12 +75,15 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
         let response = await getAllProducts();
         if (response) {
             setProducts(response.data);
+            console.log('Products fetched', response.data);
+
         }
     }
 
     useEffect(() => {
         if (!products || products.length <= 0) {
             fetchProducts();
+
         }
     }, [products])
 
@@ -88,6 +91,7 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
         const response = await getAllProductCategories();
         if (response) {
             setCategories(response.data);
+            console.log('Categories fetched', response.data);
         }
     }
 
